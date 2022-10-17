@@ -7,13 +7,15 @@ import {
 
 import logo from "../assets/logo.png";
 
-import { useDispatch } from "react-redux";
-import { setOpenCart } from "../redux/features/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTotalQty, setOpenCart } from "../redux/features/cartSlice";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const totalQty = useSelector(selectTotalQty)
 
   const onCartToggle = () => {
     dispatch(setOpenCart({
@@ -89,7 +91,7 @@ const Navbar = () => {
                       : "bg-slate-100 text-slate-900 shadow-slate-100"
                   }`}
                 >
-                  0
+                  {totalQty}
                 </div>
               </button>
             </li>
